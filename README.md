@@ -1,46 +1,51 @@
-# Astro Starter Kit: Basics
+# Tunnel Racer
+
+A small browser game made with Astro. You're a glowing ball stuck to the wall of a tunnel. Red walls fly at you, and you have to line up with the gap to get through.
+
+## How to play
+
+- Go to `/play` and click to start.
+- Move your mouse (or finger) around the middle of the screen. The ball follows the angle of your cursor.
+- Steer into the gap in each red wall.
+- The tunnel gets faster over time and the gaps get smaller.
+- If you hit a wall you crash. Click to try again. Your best score is saved in your browser.
+
+## Run it
+
+You need Node 22.12 or newer.
 
 ```sh
-npm create astro@latest -- --template basics
+npm install
+npm run dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Then open http://localhost:4321 for the home page, or http://localhost:4321/play to play straight away.
 
-## 🚀 Project Structure
+## What's in it
 
-Inside of your Astro project, you'll see the following folders and files:
+- **Canvas** for the tunnel: rings, spokes, a glow, and a bend that gets bigger the further away it is. It looks 3D but it's just 2D drawing with perspective maths.
+- **Web Audio** for sound: a drone that gets higher as you speed up, a blip when you pass a wall, and a low thud when you crash.
+
+## Project layout
 
 ```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+src/
+├── components/Tunnel.astro   the canvas, loads the game
+├── lib/tunnel.js             all the game code
+├── layouts/Layout.astro      basic page wrapper
+└── pages/
+    ├── index.astro           home page with the copy-paste link
+    └── play.astro            the game
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## The home page
 
-## 🧞 Commands
+The home page (`/`) gives you the whole game as one `data:` link. Hit Copy, paste it into your browser's address bar, and the game runs on its own with no server. Some browsers block opening `data:` links like this, so it might not work everywhere.
 
-All commands are run from the root of the project, from a terminal:
+## Commands
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+| Command           | What it does                      |
+| :---------------- | :-------------------------------- |
+| `npm run dev`     | Starts the dev server             |
+| `npm run build`   | Builds the site into `dist/`      |
+| `npm run preview` | Previews the built site           |
